@@ -17,13 +17,21 @@ const Pokemon = () => {
   useEffect(() => {
     // alert("hi");
     async function getData() {
-      const request = await axios.get(
-        `https://pokeapi.co/api/v2/pokemon/${num}`
-      );
-      setName(request.data.name);
-      //console.log(Object.values(request.data.moves[0].move));
-      setMoves(request.data.moves.length);
-      setMoveName(Object.values(request.data.moves[0].move.name));
+      try {
+        const request = await axios.get(
+          `https://pokeapi.co/api/v2/pokemon/${num}`
+        );
+
+        setName(request.data.name);
+        //console.log(Object.values(request.data.moves[0].move));
+        setMoves(request.data.moves.length);
+        setMoveName(request.data.moves[0].move.name);
+      } catch (e) {
+        if (moves === undefined || moveName === undefined) {
+          // alert("Data not found at this number");
+          console.log("Moves not Defined ");
+        }
+      }
     }
     getData();
   });
@@ -46,7 +54,7 @@ const Pokemon = () => {
           <Col md={4}></Col>
           <Col md={4} className="text-center">
             <select value={num} onChange={setValue} className="form-control">
-              <option value="0" className="active">
+              <option value="" className="active">
                 --Select your Number--
               </option>
               <option value="1">1</option>
@@ -65,10 +73,9 @@ const Pokemon = () => {
             <Col md={3}></Col>
             <Col md={6} className="text-center">
               <h1 className="header_title">
-                Pokemon Character: Name is{" "}
-                <span className="span-tag"> {name} </span>and
-                <span className="span-tag"> {moves} </span>moves and first move
-                is <span className="span-tag"> {moveName}</span>.
+                Pokemon Character:<span className="span-tag"> {name} </span> has
+                <span className="span-tag"> {moves} </span>moves with
+                <span className="span-tag"> {moveName}</span> as first move.
               </h1>
               {/* <h1 className="header_title">{moves}</h1> */}
             </Col>
