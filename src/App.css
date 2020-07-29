@@ -14,9 +14,11 @@ background-attachment: fixed !important;
   font-weight: 800;
   color:  	#00964b;
   font-size: 2rem;
+  text-shadow:2px 2px 5px #2cc24f !important;
 }
 .anchor:hover{
   text-decoration: none;
+  
 }
 .span-tag{
   color:black;
@@ -27,4 +29,5 @@ background-attachment: fixed !important;
   text-align: center;
   font-family: 'Poppins', sans-serif;
   font-weight: 800;
+  text-align:justify;
 }
